@@ -58,7 +58,7 @@ To run the application locally, follow these steps:
 2. Install the required dependencies by running:
 
    ```bash
-   pip install Flask Pillow rembg numpy
+   pip install -r requiremens.txt
    ```
 
 3. Start the Flask development server:

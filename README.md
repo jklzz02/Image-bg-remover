@@ -19,23 +19,26 @@ Before running the application, ensure you have the following installed:
 - Pillow
 - `rembg`
 - `numpy`
+- `onnxruntime`
 
 To install the required dependencies, you can run the following command:
 
 ```bash
-pip install Flask Pillow rembg numpy
+pip install -r requirements.txt
 ```
+
+Consult needed libraries in [Requirements](requirements.txt)
 
 ## Project Structure
 
 The project is structured with two main components:
 
-1. **Flask Application** (`app.py`): 
+1. **Flask Application** ([`main/app.py`](main/app.py)): 
    - The backend code for handling the image processing logic.
    - Users upload an image via a form, and the backend processes it using the `rembg` library.
    - After processing, the app generates a base64-encoded version of the processed image and sends it to the frontend for display.
 
-2. **HTML Template** (`templates/index.html`): 
+2. **HTML Template** ([`templates/index.html`](main/templates/index.html)): 
    - The frontend of the app, where users can upload their image.
    - After the image is processed, the HTML page displays the processed image and provides a download link.
    - The page uses TailwindCSS for styling.

@@ -22,13 +22,16 @@
         </div> 
         <input type="submit" value="Send image">
     </form>
-    {% if processed_image_data %}
-    <h2>{{original_filename}}</h2>
-    <img src="data:image/png;base64,{{processed_image_data}}" alt="{{original_filename}} Processed">
-    
-    <a href="data:image/png;base64,{{processed_image_data}}" download="{{original_filename}}_processed.png">
-        Download {{original_filename}}_processed.png
-    </a>
-    {% endif %}
+    <div class="flex flex-col align-center mx-auto w-100">
+        {% if is_valid and processed_image_data %}
+        <h2>{{original_filename}}</h2>
+        <img class="w-100" src="data:image/png;base64,{{processed_image_data}}" alt="{{original_filename}} Processed">
+        <a href="data:image/png;base64,{{processed_image_data}}" download="{{original_filename}}_processed.png">
+            Download {{original_filename}}_processed.png
+        </a>
+        {% elif not is_valid%}
+        <h2>{{original_filename}} is not a valid image</h2>
+        {% endif %}
+    </div>
 </body>
 </html>

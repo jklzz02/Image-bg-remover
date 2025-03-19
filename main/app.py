@@ -16,15 +16,17 @@ def home():
 
     processed_image_data = None
     original_filename = ""
-    is_valid = False
+    is_valid = True
 
     if request.method == "POST":
         file = request.files["image_file"]
         is_valid  = is_valid_image(file)
-
         if not is_valid:
-            print("image not valid")
-            return
+            return render_template(
+                "index.html",
+                 original_filename = file.filename,
+                 is_valid = is_valid
+                )
 
         original_filename = file.filename.split('.')[0]
         print(original_filename)
@@ -43,8 +45,9 @@ def home():
 
     return render_template(
         "index.html",
-        processed_image_data=processed_image_data,
-        original_filename=original_filename
+        processed_image_data = processed_image_data,
+        original_filename = original_filename,
+        is_valid = is_valid
         )
 
 

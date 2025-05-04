@@ -1,37 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Image background remover</title>
-</head>
-<body>
+  </head>
+  <body>
     <form method="post" enctype="multipart/form-data">
-        <div class="flex items-center justify-center w-full">
-            <label for="image_file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                    </svg>
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400 font-semibold">Click to upload</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
-                </div>
-                <input id="image_file" name="image_file" type="file" class="hidden" />
-            </label>
-        </div> 
-        <input type="submit" value="Send image">
+      <div class="flex items-center justify-center w-full">
+        <label
+          for="image_file"
+          class="flex flex-col items-center justify-center w-full h-64 border-2 border-purple-300 rounded-lg cursor-pointer bg-purple-50 dark:hover:bg-purple-800 dark:bg-purple-700 dark:hover:bg-purple-600"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p
+              class="mb-2 text-sm text-gray-500 dark:text-gray-400 font-semibold"
+            >
+              Click to upload
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              SVG, PNG, JPG or GIF
+            </p>
+          </div>
+          <input id="image_file" name="image_file" type="file" class="hidden" />
+        </label>
+      </div>
+      <button class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
+        <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </span>
+        <span class="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">Send image</span>
+        <span class="relative invisible">Send image</span>
+    </button>
     </form>
     <div class="flex flex-col align-center mx-auto w-100">
-        {% if is_valid and processed_image_data %}
-        <h2>{{original_filename}}</h2>
-        <img class="w-100" src="data:image/png;base64,{{processed_image_data}}" alt="{{original_filename}} Processed">
-        <a href="data:image/png;base64,{{processed_image_data}}" download="{{original_filename}}_processed.png">
-            Download {{original_filename}}_processed.png
-        </a>
-        {% elif not is_valid%}
-        <h2>{{original_filename}} is not a valid image</h2>
-        {% endif %}
+      {% if is_valid and processed_image_data %}
+      <h2>{{original_filename}}</h2>
+      <img
+        class="w-100"
+        src="data:image/png;base64,{{processed_image_data}}"
+        alt="{{original_filename}} Processed"
+      />
+      </a>
+      <a 
+        href="data:image/png;base64,{{processed_image_data}}"
+        download="{{original_filename}}_processed.png" 
+        class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
+        <span 
+        class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </span>
+        <span class="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">Download</span>
+        <span class="relative invisible">Download {{original_filename}}_processed.png</span>
+    </a>
+      {% elif not is_valid%}
+      <div
+        class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium">Invalid image!</span> make sure that
+          "{{original_filename}}" is a valid SVG, PNG, JPG or GIF.
+        </div>
+      </div>
+      {% endif %}
     </div>
-</body>
+  </body>
 </html>

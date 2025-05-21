@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from werkzeug.utils import secure_filename
 from PIL import Image, UnidentifiedImageError
 from rembg import remove
 import io

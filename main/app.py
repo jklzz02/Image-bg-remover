@@ -29,8 +29,7 @@ def home():
                 )
 
         original_filename = file.filename.split('.')[0]
-        print(original_filename)
-        with Image.open(file) as input_image:
+        with Image.open(file.stream) as input_image:
             input_array = np.array(input_image)
 
             output_array = remove(input_array)

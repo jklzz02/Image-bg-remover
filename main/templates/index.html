@@ -104,31 +104,25 @@
             >
             <span class="relative invisible">Download</span>
           </a>
-          {% elif not is_valid %}
-          <div
-            class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50"
-            role="alert"
-          >
-            <svg
-              class="shrink-0 inline w-4 h-4 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-              />
-            </svg>
-            <div>
-              {% if original_filename %}
-              <span class="font-medium"
-                >"{{original_filename}}" is not a valid image!</span
+        </div>
+      </div>
+      {% endif %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            {% if category == 'invalid_file' %}
+              <div
+                class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50"
+                role="alert"
               >
-              Please upload a valid WEBP, PNG, JPG, or GIF file. {% else %}
-              <span class="font-medium">Invalid image!</span> Please upload a
-              valid WEBP, PNG, JPG, or GIF file. {% endif %}
-            </div>
-          </div>
-          {% endif %}
+                <i class="bi bi-exclamation-triangle-fill mr-2"></i>
+                <span class="font-medium">
+                  Invalid image!
+                </span>
+                &nbsp;Please upload a valid WEBP, PNG, JPG, or GIF file.
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endwith %}
         </div>
       </div>
     </div>

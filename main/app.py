@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect, flash
 from PIL import Image, UnidentifiedImageError
 from rembg import remove
+import os
 import io
 import base64
 import logging
 import numpy as np
 
-app = Flask(__name__)
+load_dotenv("../.env")
+
+app = Flask(__name__, static_folder='static')
+app.secret_key = os.getenv("SECRET_KEY")
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -21,11 +26,8 @@ def home():
         file = request.files["image_file"]
         is_valid  = is_valid_image(file)
         if not is_valid:
-            return render_template(
-                "index.html",
-                 original_filename = file.filename,
-                 is_valid = is_valid
-                )
+            flash(original_filename, "invalid_file")
+            return redirect("/")
 
         original_filename = file.filename.split('.')[0]
         with Image.open(file.stream) as input_image:
